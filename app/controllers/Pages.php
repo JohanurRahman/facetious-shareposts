@@ -9,7 +9,7 @@
         public function index() {
 
             $data = [
-                'title' => 'Facetious MVC'
+                'title' => 'SharePosts'
             ];
 
             $this->view('pages/index', $data);
