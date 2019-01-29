@@ -9,7 +9,8 @@
         public function index() {
 
             $data = [
-                'title' => 'SharePosts'
+                'title' => 'SharePosts',
+                'description' => 'Simple Social Network Built on the FacetiousMVC PHP Framework'
             ];
 
             $this->view('pages/index', $data);
@@ -18,7 +19,8 @@
 
         public function about() {
             $data = [
-                'title' => 'About us'
+                'title' => 'About us',
+                'description' => 'App to share posts with other users'
             ];
             $this->view('pages/about', $data);
             
