@@ -6,7 +6,6 @@
 
             $this->userModel = $this->model('User');
 
-
         }
 
         public function register() {
@@ -73,9 +72,9 @@
                         // Hash Password
                         $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
-
                         // Register User
                         if($this->userModel->register($data)) {
+                            flash('register_success','You are registered and can log in');
                            redirect('users/login');
                         } else {
                             die('Something went wrong');
@@ -142,10 +141,35 @@
                     $data['password_err'] = 'Please enter password';
                 } 
 
+                // Check for user/email
+                if($this->userModel->findUserByEmail($data['email'])){
+                    // User found
+
+
+
+                } else {
+                    $data['email_err'] = 'No user found';
+                }
+
 
                 // Make sure errors are empty
                 if(empty($data['email_err']) && empty($data['password_err'])) {
-                        die('Success');
+                        // Validated
+                        // Check and set logged in user
+
+                        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+                        
+                        if($loggedInUser) {
+                            // Create Session
+                            die('Success');
+
+
+                        } else {
+                            $data['password_err'] = 'Password incorrect';
+
+                            $this->view('users/login', $data);
+                        }
+
                 } else {
                     // Load view with errors
                     $this->view('users/login', $data);

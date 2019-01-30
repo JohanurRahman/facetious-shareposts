@@ -1,1 +1,1 @@
-# Custom MVC Framework
+# A basic blog system using custom php framework

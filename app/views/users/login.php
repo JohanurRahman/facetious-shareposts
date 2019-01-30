@@ -6,6 +6,8 @@
 
     <div class="card card-body bg-light mt-5">
 
+        <?php flash('register_success') ?>
+
         <h2>Login</h2>
         <p>Please fill in your credentials to log in</p>
 
