@@ -4,6 +4,9 @@
 
         public function __construct() {
 
+            $this->userModel = $this->model('User');
+
+
         }
 
         public function register() {
@@ -11,6 +14,8 @@
             // Check for POST
             if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Process the form
+
+
 
                 // Sanitize POST data
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -35,6 +40,11 @@
                 // Validating Email
                 if(empty($data['email'])) {
                     $data['email_err'] = 'Please enter email';
+                } else {
+                    // Check if the given email exist
+                    if($this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_err'] = 'Email is already taken';
+                    }
                 }
 
                 // Validating Password
@@ -60,7 +70,17 @@
                     empty($data['password_err']) && 
                     empty($data['confirm_password_err'])) {
 
-                        die('Success');
+                        // Hash Password
+                        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+
+                        // Register User
+                        if($this->userModel->register($data)) {
+                           redirect('users/login');
+                        } else {
+                            die('Something went wrong');
+                        }
+
 
                 } else {
 
