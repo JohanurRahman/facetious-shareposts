@@ -28,9 +28,7 @@ Written By <?php echo $data['user']->name ?> on <?php echo $data['post']->create
     </a>
 
     <form class="pull-right" action="<?php echo URLROOT; ?>/posts/delete/<?php echo $data['post']->id; ?>" method="post">
-
-        <input type="submit" value="Delete" class="btn btn-danger">
-    
+         <input type="submit" value="Delete" class="btn btn-danger">
     </form>
 
 <?php endif; ?>
