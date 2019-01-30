@@ -1,5 +1,7 @@
 <?php require APPROOT . '/views/inc/header.php'; ?>
 
+    <?php flash('post_message'); ?>
+
     <div class="row mb-3">  
 
         <div class="col-md-6">
@@ -8,7 +10,7 @@
 
         <div class="col-md-6">
 
-            <a href="<?php URLROOT ?>/posts/add" class="btn btn-primary pull-right">
+            <a href="<?php echo URLROOT; ?>/posts/add" class="btn btn-primary pull-right">
 
                 <i class="fa fa-pencil"></i>
                 Add Post
@@ -32,7 +34,8 @@
             </div>
 
             <div class="card-text"><?php echo $post->body; ?></div>
-            <a href="<?php echo URLROOT?>/posts/show/<?php echo $post->postsId;?>" class="btn btn-dark">
+            <br>
+            <a href="<?php echo URLROOT; ?>/posts/show/<?php echo $post->postId;?>" class="btn btn-dark">
                     More
             </a>
 

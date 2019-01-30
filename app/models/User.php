@@ -60,6 +60,19 @@
             }
         
         }
+
+        public function getUserById($id) {
+
+            $this->db->query('SELECT * FROM users where id = :id');
+            
+            // Bind values
+            $this->db->bind(':id', $id);
+
+            $row = $this->db->single();
+
+            return $row;
+
+        }
         
 
         
